@@ -70,6 +70,7 @@ npm fund
 
 ### Environment Variables
 
+
 Create a `.env` file in the root and set:
 
 ```
@@ -89,6 +90,18 @@ EMAIL_USER=your_gmail_address
 EMAIL_PASS=your_gmail_app_password
 PORT=5000
 ```
+
+```md
+## 🛠️ Environment Variables Setup
+
+If you find difficulty in setting up environment variables, follow these steps(You can follow the steps provided in .env.example to set them up):
+
+1. Copy the `.env.example` files to `.env` files:
+
+```bash
+cp .env.example .env
+cp server/.env.example server/.env
+
 
 ### Running Locally
 
