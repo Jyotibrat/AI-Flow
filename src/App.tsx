@@ -15,6 +15,7 @@ import Blog from './pages/Blog';
 import AITools from './pages/AITools';
 import Chatbot from './components/Chatbot';
 import { initGA, trackPageView } from './utils/analytics';
+import { Toaster } from 'react-hot-toast';
 
 // Create a separate component for analytics tracking
 const AnalyticsTracker: React.FC = () => {
@@ -70,6 +71,7 @@ function App() {
             </Layout>
           </AnimatePresence>
           <Chatbot />
+          <Toaster position="top-right" />
         </div>
       </Router>
     </AuthProvider>

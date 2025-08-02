@@ -10,6 +10,8 @@ import {
   BarChart,
 } from "lucide-react";
 
+import FormattedOutput from "../components/FormattedOutput";
+
 const AITools: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTool, setSelectedTool] = useState("");
@@ -267,11 +269,7 @@ const AITools: React.FC = () => {
                         <label className="block text-sm font-medium mb-3 text-gray-300">
                           Output
                         </label>
-                        <div className="p-4 bg-gray-900/50 border border-gray-600 rounded-lg">
-                          <p className="text-gray-200 whitespace-pre-wrap">
-                            {output}
-                          </p>
-                        </div>
+                        <FormattedOutput content={output} onClear={() => setOutput("")} />
                       </div>
                     )}
                   </div>
