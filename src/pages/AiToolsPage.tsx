@@ -35,17 +35,18 @@ const AiToolsPage = () => {
     checkSession();
   }, [navigate]);
 
-  return (
-    <div className="min-h-screen flex items-center justify-center text-white">
-      {(authLoading || localLoading) ? (
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-blue-500" />
-      ) : error ? (
-        <div className="text-red-500">{error}</div>
-      ) : (
-        <div>Authenticating with Google...</div>
-      )}
-    </div>
-  );
+return (
+  <div className="min-h-screen flex items-center justify-center text-gray-900 dark:text-white bg-white dark:bg-gray-900 transition-colors duration-300">
+    {(authLoading || localLoading) ? (
+      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-blue-500" />
+    ) : error ? (
+      <div className="text-red-600 dark:text-red-400">{error}</div>
+    ) : (
+      <div>Authenticating with Google...</div>
+    )}
+  </div>
+);
+
 };
 
 export default AiToolsPage;

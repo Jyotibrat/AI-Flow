@@ -283,164 +283,167 @@ const AITools: React.FC = () => {
   };
 
   return (
+   <motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  transition={{ duration: 0.8 }}
+  className="min-h-screen px-6 py-12 bg-gradient-to-b from-gray-900 via-gray-950 to-black"
+>
+  <div className="container mx-auto max-w-7xl">
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.8 }}
-      className="min-h-screen px-6 py-12"
+      initial={{ y: 50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.2, duration: 0.8 }}
+      className="text-center mb-16"
     >
-      <div className="container mx-auto max-w-7xl">
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-            AI Tools
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Harness the power of AI with our comprehensive suite of tools
-          </p>
-        </motion.div>
+      <h1 className="text-6xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-lg">
+        AI Tools
+      </h1>
+      <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Harness the power of AI with our comprehensive suite of tools
+      </p>
+    </motion.div>
 
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="relative mb-12"
-        >
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-          <input
-            type="text"
-            placeholder="Search AI tools..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </motion.div>
+    <motion.div
+      initial={{ y: 30, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.4, duration: 0.8 }}
+      className="relative mb-12"
+    >
+      <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+      <input
+        type="text"
+        placeholder="Search AI tools..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="w-full pl-14 pr-4 py-4 bg-gray-800/70 backdrop-blur-md border border-gray-700 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+      />
+    </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-1">
-            <div className="grid gap-4">
-              {filteredTools.map((tool, index) => (
-                <motion.div
-                  key={tool.id}
-                  initial={{ x: -50, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.6 + index * 0.1, duration: 0.8 }}
-                  onClick={() => setSelectedTool(tool.id)}
-                  className={`p-6 rounded-xl cursor-pointer transition-all duration-300 ${
+    <div className="grid lg:grid-cols-3 gap-10">
+      <div className="lg:col-span-1">
+        <div className="grid gap-4">
+          {filteredTools.map((tool, index) => (
+            <motion.div
+              key={tool.id}
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.6 + index * 0.1, duration: 0.8 }}
+              onClick={() => setSelectedTool(tool.id)}
+              className={`p-6 rounded-2xl cursor-pointer shadow-lg transition-all duration-300 transform hover:scale-105 ${
+                selectedTool === tool.id
+                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-blue-500/50"
+                  : "bg-gray-800/70 backdrop-blur-md border border-gray-700 hover:border-blue-500"
+              }`}
+            >
+              <div className="flex items-center space-x-4">
+                <div
+                  className={`w-12 h-12 rounded-full flex items-center justify-center ${
                     selectedTool === tool.id
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
-                      : "bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-blue-500"
+                      ? "bg-white/20"
+                      : "bg-gradient-to-r from-blue-600 to-purple-600"
                   }`}
                 >
-                  <div className="flex items-center space-x-4">
-                    <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                        selectedTool === tool.id
-                          ? "bg-white/20"
-                          : "bg-gradient-to-r from-blue-600 to-purple-600"
-                      }`}
-                    >
-                      <tool.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold">{tool.name}</h3>
-                      <p
-                        className={`text-sm ${
-                          selectedTool === tool.id
-                            ? "text-gray-200"
-                            : "text-gray-400"
-                        }`}
-                      >
-                        {tool.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:col-span-2">
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-700 h-full"
-            >
-              {selectedTool ? (
+                  <tool.icon className="w-6 h-6 text-white" />
+                </div>
                 <div>
-                  <h2 className="text-2xl font-bold mb-6">
-                    {tools.find((t) => t.id === selectedTool)?.name}
-                  </h2>
-
-                  <div className="space-y-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-3 text-gray-300">
-                        Input
-                      </label>
-                      <textarea
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        placeholder={
-                          tools.find((t) => t.id === selectedTool)?.placeholder
-                        }
-                        className="w-full h-32 p-4 bg-gray-900/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                      />
-                    </div>
-
-                    <button
-                      onClick={handleSubmit}
-                      disabled={loading}
-                      className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {loading ? "Processing..." : "Generate Result"}
-                    </button>
-
-                    {output && (
-                      <div>
-                        <label className="block text-sm font-medium mb-3 text-gray-300">
-                          Output
-                        </label>
-                        <FormattedOutput content={output} onClear={() => setOutput("")} />
-                      </div>
-                    )}
-                    {imageUrl && (
-                      <div>
-                        <label className="block text-sm font-medium mb-3 text-gray-300">
-                          Output
-                        </label>
-                        <div className="p-4 bg-gray-900/50 border border-gray-600 rounded-lg">
-                          <img src={imageUrl} alt="Generated Image" />
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  <h3 className="text-lg font-semibold">{tool.name}</h3>
+                  <p
+                    className={`text-sm ${
+                      selectedTool === tool.id
+                        ? "text-gray-200"
+                        : "text-gray-400"
+                    }`}
+                  >
+                    {tool.description}
+                  </p>
                 </div>
-              ) : (
-                <div className="flex items-center justify-center h-full">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Zap className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">
-                      Select an AI Tool
-                    </h3>
-                    <p className="text-gray-400">
-                      Choose a tool from the left to get started
-                    </p>
-                  </div>
-                </div>
-              )}
+              </div>
             </motion.div>
-          </div>
+          ))}
         </div>
       </div>
-    </motion.div>
+
+      <div className="lg:col-span-2">
+        <motion.div
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="bg-gray-800/70 backdrop-blur-lg p-10 rounded-2xl border border-gray-700 h-full shadow-lg"
+        >
+          {selectedTool ? (
+            <div>
+              <h2 className="text-3xl font-bold mb-6 text-gradient">
+                {tools.find((t) => t.id === selectedTool)?.name}
+              </h2>
+
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium mb-3 text-gray-300">
+                    Input
+                  </label>
+                  <textarea
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder={
+                      tools.find((t) => t.id === selectedTool)?.placeholder
+                    }
+                    className="w-full h-32 p-4 bg-gray-900/60 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  />
+                </div>
+
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold text-white shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loading ? "Processing..." : "Generate Result"}
+                </button>
+
+                {output && (
+                  <div>
+                    <label className="block text-sm font-medium mb-3 text-gray-300">
+                      Output
+                    </label>
+                    <FormattedOutput content={output} onClear={() => setOutput("")} />
+                  </div>
+                )}
+                {imageUrl && (
+                  <div>
+                    <label className="block text-sm font-medium mb-3 text-gray-300">
+                      Output
+                    </label>
+                    <div className="p-4 bg-gray-900/60 border border-gray-600 rounded-xl">
+                      <img
+                        src={imageUrl}
+                        alt="Generated Image"
+                        className="rounded-lg shadow-lg"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center h-full">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <Zap className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-semibold mb-2">Select an AI Tool</h3>
+                <p className="text-gray-400">
+                  Choose a tool from the left to get started
+                </p>
+              </div>
+            </div>
+          )}
+        </motion.div>
+      </div>
+    </div>
+  </div>
+</motion.div>
+
   );
 };
 
