@@ -10,6 +10,7 @@ import {
   Mail, 
   BookOpen, 
   Brain,
+  Calendar,
   Menu,
   X
 } from 'lucide-react';
@@ -19,6 +20,7 @@ const navItems = [
   { path: '/about', icon: Info, label: 'About' }, // About
   { path: '/examples', icon: FileText, label: 'Examples' }, // Examples
   { path: '/ai-tools', icon: Brain, label: 'AI Tools' }, // AI Tools
+  { path: '/schedule-x', icon: Calendar, label: 'ScheduleX' }, // ScheduleX
   { path: '/blog', icon: BookOpen, label: 'Blog' }, // Blog
   { path: '/community', icon: MessageCircle, label: 'Community' }, // Community
   { path: '/contribute', icon: Users, label: 'Contribute' }, // Contribute
