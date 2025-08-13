@@ -1,0 +1,77 @@
+<!-- OAuth Redirect Handler for Google Calendar -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google OAuth Redirect</title>
+</head>
+<body>
+    <script>
+        // Handle OAuth redirect for Google Calendar
+        function handleOAuthRedirect() {
+            try {
+                // Parse the URL fragment for access token
+                const urlParams = new URLSearchParams(window.location.hash.substring(1));
+                const accessToken = urlParams.get('access_token');
+                const state = urlParams.get('state');
+                const error = urlParams.get('error');
+
+                // Verify state parameter
+                const storedState = localStorage.getItem('oauth_state');
+                
+                if (error) {
+                    // Send error to parent window
+                    window.opener?.postMessage({
+                        type: 'GOOGLE_OAUTH_ERROR',
+                        error: error
+                    }, window.location.origin);
+                    window.close();
+                    return;
+                }
+
+                if (!accessToken || state !== storedState) {
+                    window.opener?.postMessage({
+                        type: 'GOOGLE_OAUTH_ERROR',
+                        error: 'Invalid state or missing token'
+                    }, window.location.origin);
+                    window.close();
+                    return;
+                }
+
+                // Clean up state
+                localStorage.removeItem('oauth_state');
+
+                // Send success message to parent window
+                window.opener?.postMessage({
+                    type: 'GOOGLE_OAUTH_SUCCESS',
+                    token: accessToken
+                }, window.location.origin);
+
+                window.close();
+            } catch (error) {
+                console.error('OAuth redirect handling error:', error);
+                window.opener?.postMessage({
+                    type: 'GOOGLE_OAUTH_ERROR',
+                    error: error.message
+                }, window.location.origin);
+                window.close();
+            }
+        }
+
+        // Run when page loads
+        if (window.location.hash.includes('access_token')) {
+            handleOAuthRedirect();
+        } else {
+            // No token found, show error
+            window.opener?.postMessage({
+                type: 'GOOGLE_OAUTH_ERROR',
+                error: 'No access token received'
+            }, window.location.origin);
+            window.close();
+        }
+    </script>
+    <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+        <h2>Processing authentication...</h2>
+        <p>This window will close automatically.</p>
+    </div>
+</body>
+</html>

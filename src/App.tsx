@@ -13,6 +13,7 @@ import Community from './pages/Community';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import AITools from './pages/AITools';
+import ScheduleX from './pages/ScheduleX';
 import Chatbot from './components/Chatbot';
 import { initGA, trackPageView } from './utils/analytics';
 import { Toaster } from 'react-hot-toast';
@@ -65,6 +66,11 @@ function App() {
                 <Route path="/ai-tools" element={
                   <ProtectedRoute>
                     <AITools />
+                  </ProtectedRoute>
+                } />
+                <Route path="/schedule-x" element={
+                  <ProtectedRoute>
+                    <ScheduleX />
                   </ProtectedRoute>
                 } />
               </Routes>
