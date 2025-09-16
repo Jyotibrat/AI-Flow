@@ -53,7 +53,7 @@ const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
       {/* Theme Toggle Button */}
       <button
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-        className="fixed top-3 right-3 z-50 p-2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white rounded-lg"
+        className="fixed top-3 right-8 z-50 p-2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white rounded-lg"
       >
         {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
       </button>
