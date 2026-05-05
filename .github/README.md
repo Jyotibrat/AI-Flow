@@ -7,6 +7,12 @@ AI Flow
 </div>
 AI Flow is a modern web application offering a suite of powerful AI-powered tools to enhance productivity and creativity. Built with React, TypeScript, Tailwind CSS, and powered by Google's Gemini 2.0 Flash API, it provides tools for prompt engineering, summarization, code explanation, translation, sentiment analysis, and more.
 
+<p align="center">
+  <a href="./assets/demo.mp4">
+    This is the demo video.
+  </a>
+</p>
+
 ## Features
 
 - **7 AI Tools:** Prompt Enhancer, Summarizer, SQL Query Explainer, Regex Generator, Code Explainer, Language Translator, Sentiment Analyzer.
@@ -139,6 +145,5 @@ The project is under [**MIT LICENSE**](LICENSE)
 *Empowering everyone with accessible AI tools.*
 
 
-DEMO VID!
-https://github.com/user-attachments/assets/24e4748d-0ba9-4e3c-8865-7b46f9a2d2d3
-
+<!--DEMO VID!-->
+<!--https://github.com/user-attachments/assets/24e4748d-0ba9-4e3c-8865-7b46f9a2d2d3-->
