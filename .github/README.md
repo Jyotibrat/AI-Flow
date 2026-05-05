@@ -1,6 +1,3 @@
-
-
-
 <h1 align="center">
 AI Flow
 </h1>
@@ -10,11 +7,11 @@ AI Flow
 </div>
 AI Flow is a modern web application offering a suite of powerful AI-powered tools to enhance productivity and creativity. Built with React, TypeScript, Tailwind CSS, and powered by Google's Gemini 2.0 Flash API, it provides tools for prompt engineering, summarization, code explanation, translation, sentiment analysis, and more.
 
-<p align="center">
-  <a href="./assets/demo.mp4">
-    **This is the demo video.**
+<h2 align="center">
+  <a href="https://github.com/user-attachments/assets/4af4c057-9abb-45cc-a0ac-7463fb856157">
+    This is the demo video.
   </a>
-</p>
+</h2>
 
 https://github.com/user-attachments/assets/4af4c057-9abb-45cc-a0ac-7463fb856157
 
