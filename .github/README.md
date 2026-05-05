@@ -1,3 +1,6 @@
+
+
+
 <h1 align="center">
 AI Flow
 </h1>
@@ -9,9 +12,11 @@ AI Flow is a modern web application offering a suite of powerful AI-powered tool
 
 <p align="center">
   <a href="./assets/demo.mp4">
-    This is the demo video.
+    **This is the demo video.**
   </a>
 </p>
+
+https://github.com/user-attachments/assets/4af4c057-9abb-45cc-a0ac-7463fb856157
 
 ## Features
 
