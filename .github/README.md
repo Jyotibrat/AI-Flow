@@ -137,3 +137,8 @@ The project is under [**MIT LICENSE**](LICENSE)
 ---
 
 *Empowering everyone with accessible AI tools.*
+
+
+DEMO VID!
+https://github.com/user-attachments/assets/24e4748d-0ba9-4e3c-8865-7b46f9a2d2d3
+
