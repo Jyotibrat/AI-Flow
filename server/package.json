@@ -1,20 +1,23 @@
 {
-    "name": "portfolio-backend",
-    "version": "1.0.0",
-    "description": "Backend for portfolio contact form",
-    "main": "index.js",
-    "scripts": {
-      "start": "node index.js",
-      "dev": "nodemon index.js"
-    },
-    "dependencies": {
-      "cors": "^2.8.5",
-      "dotenv": "^16.0.3",
-      "express": "^4.18.2",
-      "nodemailer": "^6.9.1"
-    },
-    "devDependencies": {
-      "nodemon": "^3.1.10"
-    }
+  "name": "portfolio-backend",
+  "version": "1.0.0",
+  "description": "Backend for portfolio contact form",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "lint": "eslint .",
+    "format": "eslint . --fix"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.1",
+    "vite-react-typescript-starter": "file:.."
+  },
+  "devDependencies": {
+    "eslint": "^9.9.1",
+    "nodemon": "^3.1.10"
   }
-  
+}
