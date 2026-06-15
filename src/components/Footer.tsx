@@ -12,25 +12,25 @@ const Footer: React.FC = () => {
             name: "Buy me a coffee",
             href: "https://coff.ee/bjyotibrat",
             icon: Coffee,
-            color: "hover:text-yellow-500",
+            color: "hover:text-yellow-500 dark:hover:text-yellow-400",
         },
         {
             name: "GitHub",
             href: "https://github.com/Jyotibrat",
             icon: Github,
-            color: "hover:text-white",
+            color: "hover:text-gray-900 dark:hover:text-white",
         },
         {
             name: "Twitter",
             href: "https://x.com/B_Jyotibrat",
             icon: FaXTwitter ,
-            color: "hover:text-white",
+            color: "hover:text-gray-900 dark:hover:text-white",
         },
         {
             name: "LinkedIn",
             href: "https://www.linkedin.com/in/bindupautra-jyotibrat",
             icon: Linkedin,
-            color: "hover:text-white",
+            color: "hover:text-blue-600 dark:hover:text-white",
         },
     ];
 
@@ -43,7 +43,7 @@ return (
       bg-gray-100 dark:bg-gray-900/95 
       backdrop-blur-md 
       border-t border-gray-300 dark:border-gray-800 
-      text-gray-600 dark:text-gray-400 
+      text-gray-700 dark:text-gray-300 
       px-6 py-8
     "
   >
@@ -65,7 +65,8 @@ return (
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-gray-600 dark:text-gray-400 transition-colors duration-300 ${link.color}`}
+                aria-label={`${link.name} (opens in a new tab)`}
+                className={`text-gray-700 dark:text-gray-300 transition-colors duration-300 ${link.color}`}
               >
                 <link.icon className="w-5 h-5" />
               </a>

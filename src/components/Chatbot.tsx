@@ -67,7 +67,10 @@ const Chatbot: React.FC = () => {
       onClick={() => setIsOpen(!isOpen)}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-20 right-6 z-50 p-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-lg"
+      className="fixed bottom-20 right-6 z-50 p-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+      aria-label={isOpen ? "Close AI Assistant chat" : "Open AI Assistant chat"}
+      aria-expanded={isOpen}
+      aria-controls="chatbot-dialog"
     >
       {isOpen ? (
         <X className="w-6 h-6 text-white" />
@@ -79,6 +82,9 @@ const Chatbot: React.FC = () => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          id="chatbot-dialog"
+          role="dialog"
+          aria-label="AI Assistant Chat"
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -131,6 +137,7 @@ const Chatbot: React.FC = () => {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
                   placeholder="Ask me anything..."
+                  aria-label="Chat message"
                   className="flex-1 px-3 py-2 
                     bg-gray-100 dark:bg-gray-700 
                     border border-gray-300 dark:border-gray-600 
@@ -142,7 +149,8 @@ const Chatbot: React.FC = () => {
                 />
                 <button
                   onClick={handleSend}
-                  className="p-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-white"
+                  aria-label="Send message"
+                  className="p-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   disabled={loading}
                 >
                   <Send className="w-4 h-4" />

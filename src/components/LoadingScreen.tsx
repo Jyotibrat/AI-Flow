@@ -7,6 +7,9 @@ return (
     initial={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     transition={{ duration: 0.5 }}
+    role="status"
+    aria-live="polite"
+    aria-label="Loading AI Flow"
     className="fixed inset-0 bg-white dark:bg-gray-900 flex items-center justify-center z-50"
   >
     <div className="text-center">
@@ -27,7 +30,7 @@ return (
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="text-gray-600 dark:text-gray-400"
+        className="text-gray-700 dark:text-gray-300"
       >
         Initializing AI-powered tools...
       </motion.p>

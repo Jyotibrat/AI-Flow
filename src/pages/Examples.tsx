@@ -127,7 +127,7 @@ const Examples: React.FC = () => {
               <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
                 {example.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">{example.description}</p>
+              <p className="text-gray-700 dark:text-gray-300">{example.description}</p>
             </div>
           </div>
 
@@ -150,7 +150,7 @@ const Examples: React.FC = () => {
                 <div className="bg-gray-200 dark:bg-gray-900/50 p-4 rounded-lg border border-gray-300 dark:border-gray-600">
                   <img
                     src={example.output}
-                    alt="Generated image"
+                    alt={`Generated image for example: ${example.input}`}
                     className="rounded-lg max-w-full mx-auto"
                   />
                 </div>
