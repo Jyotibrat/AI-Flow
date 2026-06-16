@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -11,6 +11,25 @@ import {
   Image,
 } from "lucide-react";
 import FormattedOutput from "../components/FormattedOutput";
+
+interface GeminiPart {
+  text?: string;
+  inlineData?: {
+    data?: string;
+    mimeType?: string;
+  };
+}
+
+interface GeminiResponse {
+  candidates?: Array<{
+    content?: {
+      parts?: GeminiPart[];
+    };
+  }>;
+  error?: {
+    message?: string;
+  };
+}
 
 const AITools: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -114,7 +133,7 @@ const handleToolSelect = (toolId: string) => {
   const processWithAI = async (
     inputText: string,
     systemPrompt: string,
-    isImage: Boolean
+    isImage: boolean
   ) => {
     if (!GEMINI_API_KEY) {
       setOutput("API key not configured. Please contact the administrator.");
@@ -145,7 +164,7 @@ const handleToolSelect = (toolId: string) => {
           }
         );
 
-        const data = await response.json();
+        const data = (await response.json()) as GeminiResponse;
         console.log(data); // For debugging
 
         if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
@@ -155,7 +174,7 @@ const handleToolSelect = (toolId: string) => {
         } else {
           setOutput("No response from Gemini API.");
         }
-      } catch (error) {
+      } catch {
         setOutput("Error processing your request. Please try again.");
       } finally {
         setLoading(false);
@@ -187,11 +206,11 @@ const handleToolSelect = (toolId: string) => {
           }
         );
 
-        const data = await response.json();
+        const data = (await response.json()) as GeminiResponse;
         console.log("Gemini API raw image response:", data);
 
         const imagePart = data?.candidates?.[0]?.content?.parts?.find(
-          (part: any) => part.inlineData?.data
+          (part) => part.inlineData?.data
         );
 
         if (imagePart) {
@@ -204,7 +223,7 @@ const handleToolSelect = (toolId: string) => {
         } else {
           setOutput("No image returned by Gemini API.");
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("Error:", error);
         setOutput("Failed to generate image. Please try again.");
       } finally {
@@ -276,7 +295,7 @@ const handleToolSelect = (toolId: string) => {
             placeholder="Search AI tools..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-14 pr-4 py-4 bg-gray-100 dark:bg-gray-800/70 backdrop-blur-md border border-gray-300 dark:border-gray-700 rounded-2xl text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+            className="w-full pl-14 pr-4 py-4 bg-gray-100 dark:bg-gray-800/70 backdrop-blur-md border border-gray-300 dark:border-gray-700 rounded-2xl text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent premium-input"
           />
         </motion.div>
 
@@ -287,13 +306,14 @@ const handleToolSelect = (toolId: string) => {
                 <motion.div
                   key={tool.id}
                   initial={{ x: -50, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.25 }}
                   transition={{ delay: 0.6 + index * 0.1, duration: 0.8 }}
                   onClick={() => handleToolSelect(tool.id)}   // ✅ use helper here
-                  className={`p-6 rounded-2xl cursor-pointer shadow-lg transition-all duration-300 transform hover:scale-105 ${
+                  className={`group p-6 rounded-2xl cursor-pointer transition-all duration-300 ${
                     selectedTool === tool.id
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-blue-500/50"
-                      : "bg-gray-100 dark:bg-gray-800/70 backdrop-blur-md border border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500"
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-xl shadow-blue-500/35 -translate-y-1"
+                      : "premium-card"
                   }`}
                 >
                   <div className="flex items-center space-x-4">
@@ -301,7 +321,7 @@ const handleToolSelect = (toolId: string) => {
                       className={`w-12 h-12 rounded-full flex items-center justify-center ${
                         selectedTool === tool.id
                           ? "bg-white/20"
-                          : "bg-gradient-to-r from-blue-600 to-purple-600"
+                          : "bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-500/20 transition-transform duration-300 group-hover:scale-110"
                       }`}
                     >
                       <tool.icon className="w-6 h-6 text-white" />
@@ -331,7 +351,7 @@ const handleToolSelect = (toolId: string) => {
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="bg-gray-100 dark:bg-gray-800/70 backdrop-blur-lg p-10 rounded-2xl border border-gray-300 dark:border-gray-700 h-full shadow-lg"
+              className="premium-panel p-6 sm:p-10 rounded-2xl h-full"
             >
               {selectedTool ? (
                 <div>
@@ -350,14 +370,14 @@ const handleToolSelect = (toolId: string) => {
                         placeholder={
                           tools.find((t) => t.id === selectedTool)?.placeholder
                         }
-                        className="w-full h-32 p-4 bg-gray-200 dark:bg-gray-900/60 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                        className="w-full h-32 p-4 bg-gray-200 dark:bg-gray-900/60 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none premium-input"
                       />
                     </div>
 
                     <button
                       onClick={handleSubmit}
                       disabled={loading}
-                      className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold text-white shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-6 py-3 rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed premium-button"
                     >
                       {loading ? "Processing..." : "Generate Result"}
                     </button>

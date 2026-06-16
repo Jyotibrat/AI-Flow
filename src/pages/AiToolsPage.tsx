@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const AiToolsPage = () => {
   const navigate = useNavigate();
-  const { user, loading: authLoading } = useAuth();
+  const { loading: authLoading } = useAuth();
   const [localLoading, setLocalLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

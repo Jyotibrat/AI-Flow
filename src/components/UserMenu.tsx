@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { User, LogOut, Settings } from 'lucide-react';
+import { User, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const UserMenu: React.FC = () => {

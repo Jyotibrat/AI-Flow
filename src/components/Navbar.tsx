@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden fixed top-3 left-3 z-50 p-2 bg-gray-800 text-white rounded-lg"
+        className="lg:hidden fixed top-3 left-3 z-50 p-2 bg-gray-800 text-white rounded-lg premium-button-secondary dark:bg-gray-800"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
       {/* Theme Toggle Button */}
       <button
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-        className="fixed top-4 right-6 z-50 p-2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white rounded-lg shadow-lg"
+        className="fixed top-4 right-6 z-50 p-2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white rounded-lg shadow-lg premium-button-secondary"
       >
         {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
       </button>
@@ -67,8 +67,8 @@ const Navbar: React.FC = () => {
         transition={{ duration: 0.8 }}
         className={`hidden lg:flex fixed left-0 top-0 bottom-0 
                     ${isExpanded ? 'w-64' : 'w-20'} 
-                    bg-gray-100 dark:bg-gray-900 
-                    border-r border-gray-300 dark:border-gray-800 
+                    bg-gray-100/90 dark:bg-gray-900/90 backdrop-blur-xl
+                    border-r border-gray-300/80 dark:border-gray-800/80 shadow-2xl shadow-black/5 dark:shadow-black/25
                     z-30 transition-all duration-300 ease-in-out`}
       >
         <div className="flex flex-col justify-start pt-12 pb-4 space-y-2 w-full h-full">
@@ -77,7 +77,7 @@ const Navbar: React.FC = () => {
         <div className={`flex w-full ${isExpanded ? 'justify-end pr-4' : 'justify-center'}`}>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="pt-6 rounded hover:bg-gray-200 dark:hover:bg-gray-800 transition"
+            className="pt-6 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:text-blue-500"
           >
             {isExpanded ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -92,19 +92,19 @@ const Navbar: React.FC = () => {
           className={({ isActive }) =>
             `group flex ${isExpanded ? 'items-center gap-4 w-full p-2' : 'items-center justify-center w-12 h-12'} rounded-xl transition-all duration-300 ${
               isActive
-                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
-                : 'text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800'
+                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25'
+                : 'text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/10'
             }`
           }
         >
-          <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-transparent">
+          <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-transparent transition-transform duration-300 group-hover:scale-110">
             <item.icon className="w-6 h-6" />
           </span>
 
           {isExpanded ? (
             <span className="text-sm font-medium">{item.label}</span>
           ) : (
-            <span className="absolute left-16 bg-gray-200 dark:bg-gray-800 text-black dark:text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            <span className="absolute left-16 bg-gray-200 dark:bg-gray-800 text-black dark:text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 whitespace-nowrap shadow-lg">
               {item.label}
             </span>
           )}
@@ -123,8 +123,8 @@ const Navbar: React.FC = () => {
             exit={{ x: -300 }}
             transition={{ duration: 0.3 }}
             className="lg:hidden fixed left-0 top-0 bottom-0 w-64 
-                       bg-gray-100 dark:bg-gray-900 
-                       border-r border-gray-300 dark:border-gray-800 z-40"
+                       bg-gray-100/95 dark:bg-gray-900/95 backdrop-blur-xl
+                       border-r border-gray-300 dark:border-gray-800 z-40 shadow-2xl shadow-black/20"
           >
             <div className="pt-20 px-4">
               {navItems.map((item) => (
@@ -135,8 +135,8 @@ const Navbar: React.FC = () => {
                   className={({ isActive }) =>
                     `flex items-center space-x-3 p-3 rounded-lg mb-2 transition-all duration-300 ${
                       isActive
-                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
-                        : 'text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800'
+                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25'
+                        : 'text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 hover:translate-x-1'
                     }`
                   }
                 >

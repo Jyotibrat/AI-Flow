@@ -40,8 +40,8 @@ return (
     animate={{ y: 0 }}
     transition={{ duration: 0.8 }}
     className="
-      bg-gray-100 dark:bg-gray-900/95 
-      backdrop-blur-md 
+      bg-gray-100/90 dark:bg-gray-900/95
+      backdrop-blur-xl
       border-t border-gray-300 dark:border-gray-800 
       text-gray-600 dark:text-gray-400 
       px-6 py-8
@@ -65,7 +65,7 @@ return (
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-gray-600 dark:text-gray-400 transition-colors duration-300 ${link.color}`}
+                className={`text-gray-600 dark:text-gray-400 transition-all duration-300 hover:-translate-y-1 hover:scale-110 ${link.color}`}
               >
                 <link.icon className="w-5 h-5" />
               </a>

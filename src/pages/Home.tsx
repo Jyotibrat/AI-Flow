@@ -73,11 +73,11 @@ const Home: React.FC = () => {
                 comprehensive suite of AI-powered tools designed to enhance your
                 productivity and creativity.
               </p>
-              <motion.button
+            <motion.button
                 onClick={handleExploreTools}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-semibold text-lg flex items-center space-x-2 mx-auto lg:mx-0 text-white"
+                className="group px-8 py-4 rounded-full font-semibold text-lg flex items-center space-x-2 mx-auto lg:mx-0 premium-button"
               >
                 <span>Explore AI Tools</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -95,7 +95,7 @@ const Home: React.FC = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="flex justify-center items-center relative z-10"
             >
-              <div className="w-96 h-96 bg-gradient-to-br from-blue-600/5 dark:from-blue-600/10 to-purple-600/5 dark:to-purple-600/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-blue-500/10 dark:border-blue-500/20">
+              <div className="w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-blue-600/5 dark:from-blue-600/10 to-purple-600/5 dark:to-purple-600/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-blue-500/10 dark:border-blue-500/20 shadow-[0_30px_100px_rgba(79,70,229,0.16)] float-soft">
                 <div className="w-64 h-64 bg-gradient-to-br from-blue-500/20 dark:from-blue-500/30 to-purple-600/20 dark:to-purple-600/30 rounded-full flex items-center justify-center animate-pulse backdrop-blur-sm">
                   <Cpu className="w-32 h-32 text-gray-700 dark:text-white" />
                 </div>
@@ -127,11 +127,12 @@ const Home: React.FC = () => {
                 <motion.div
                   key={index}
                   initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.25 }}
                   transition={{ delay: 0.8 + index * 0.2, duration: 0.8 }}
-                  className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-colors duration-300"
+                  className="group premium-card p-8 rounded-xl"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-blue-500/25 transition-transform duration-300 group-hover:scale-110">
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">

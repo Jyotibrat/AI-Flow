@@ -82,7 +82,7 @@ const Contribute: React.FC = () => {
       transition={{ delay: 0.4, duration: 0.8 }}
       className="mb-16"
     >
-      <div className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700">
+      <div className="premium-panel p-8 rounded-xl">
         <h2 className="text-3xl font-bold mb-6 flex items-center">
           <GitBranch className="w-8 h-8 mr-3 text-blue-500" />
           Getting Started
@@ -97,7 +97,7 @@ const Contribute: React.FC = () => {
               href="https://github.com/Jyotibrat/AI-Flow"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center px-6 py-3 bg-gray-200 dark:bg-gray-900 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-300"
+              className="flex items-center px-6 py-3 rounded-lg premium-button-secondary"
             >
               <Code className="w-5 h-5 mr-2" />
               View Repository
@@ -107,7 +107,7 @@ const Contribute: React.FC = () => {
               href="https://github.com/Jyotibrat/AI-Flow/issues"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center px-6 py-3 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-300 text-white"
+              className="flex items-center px-6 py-3 rounded-lg premium-button"
             >
               <Star className="w-5 h-5 mr-2" />
               View Issues
@@ -131,9 +131,10 @@ const Contribute: React.FC = () => {
           <motion.div
             key={index}
             initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
-            className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-colors duration-300"
+            className="premium-card p-6 rounded-xl"
           >
             <h3 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">{tech.name}</h3>
             <p className="text-gray-700 dark:text-gray-400">{tech.description}</p>
@@ -155,9 +156,10 @@ const Contribute: React.FC = () => {
           <motion.div
             key={index}
             initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ delay: 1 + index * 0.2, duration: 0.8 }}
-            className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-300 dark:border-gray-700"
+            className="premium-card p-6 rounded-xl"
           >
             <h3 className="text-xl font-semibold mb-4 text-purple-600 dark:text-purple-400">{guideline.title}</h3>
             <ul className="space-y-2">
@@ -188,7 +190,7 @@ const Contribute: React.FC = () => {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.5 }}
-          className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700 hover:border-purple-500 transition-colors duration-300 text-center max-w-sm"
+          className="premium-card p-8 rounded-xl text-center max-w-sm"
         >
           <div className="mb-6">
             <img
@@ -204,7 +206,7 @@ const Contribute: React.FC = () => {
               href={featuredContributor.linkedin} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors duration-300"
+              className="text-gray-600 dark:text-gray-400 hover:text-blue-500 premium-link"
               title="LinkedIn"
             >
               <Linkedin className="w-6 h-6" />
@@ -213,7 +215,7 @@ const Contribute: React.FC = () => {
               href={featuredContributor.github} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-300"
+              className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white premium-link"
               title="GitHub"
             >
               <Github className="w-6 h-6" />
@@ -222,7 +224,7 @@ const Contribute: React.FC = () => {
               href={featuredContributor.twitter} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-gray-600 dark:text-gray-400 hover:text-blue-400 transition-colors duration-300"
+              className="text-gray-600 dark:text-gray-400 hover:text-blue-400 premium-link"
               title="Twitter"
             >
               <Twitter className="w-6 h-6" />

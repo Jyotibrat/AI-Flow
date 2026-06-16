@@ -92,9 +92,10 @@ const Community: React.FC = () => {
           <motion.div
             key={index}
             initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
-            className="bg-white dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center"
+            className="premium-card p-6 rounded-xl text-center"
           >
             <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
               <stat.icon className="w-6 h-6 text-white" />
@@ -122,9 +123,10 @@ const Community: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ delay: 1 + index * 0.2, duration: 0.8 }}
-            className="group bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 transform hover:scale-105"
+            className="group premium-card p-8 rounded-xl"
           >
             <div className="flex items-center space-x-6">
               <div className={`w-16 h-16 bg-gradient-to-r ${link.color} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
@@ -157,9 +159,10 @@ const Community: React.FC = () => {
           <motion.div
             key={index}
             initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ delay: 1.4 + index * 0.1, duration: 0.5 }}
-            className="bg-white dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-400 transition-colors duration-300"
+            className="premium-card p-6 rounded-xl"
           >
             <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-4" />
             <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{benefit.title}</h3>
@@ -176,7 +179,7 @@ const Community: React.FC = () => {
       transition={{ delay: 1.6, duration: 0.8 }}
       className="text-center"
     >
-      <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 dark:from-blue-600/20 dark:to-purple-600/20 backdrop-blur-sm p-12 rounded-xl border border-blue-300 dark:border-blue-500/30">
+      <div className="premium-panel bg-gradient-to-r from-blue-600/20 to-purple-600/20 dark:from-blue-600/20 dark:to-purple-600/20 p-12 rounded-xl">
         <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Ready to Join?</h2>
         <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
           Become part of our growing community and help shape the future of AI tools
@@ -186,7 +189,7 @@ const Community: React.FC = () => {
             href="https://x.com/B_Jyotibrat"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 bg-blue-600 rounded-full font-semibold text-white hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center space-x-2"
+            className="px-8 py-4 rounded-full font-semibold flex items-center justify-center space-x-2 premium-button"
           >
             <Twitter className="w-5 h-5" />
             <span>Follow on Twitter</span>
@@ -195,7 +198,7 @@ const Community: React.FC = () => {
             href="https://github.com/Jyotibrat/AI-Flow"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 bg-gray-200 dark:bg-gray-700 rounded-full font-semibold text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 flex items-center justify-center space-x-2"
+            className="px-8 py-4 rounded-full font-semibold text-gray-900 dark:text-white flex items-center justify-center space-x-2 premium-button-secondary"
           >
             <Github className="w-5 h-5" />
             <span>Star on GitHub</span>

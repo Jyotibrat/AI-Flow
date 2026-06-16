@@ -75,7 +75,7 @@ const About: React.FC = () => {
       <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
         Our Mission
       </h2>
-      <div className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700 transition-colors duration-300">
+      <div className="premium-panel p-8 rounded-xl">
         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
           At AI Tools Hub, we're dedicated to democratizing access to powerful artificial intelligence tools. Our mission is to empower individuals and businesses with cutting-edge AI capabilities that enhance productivity, creativity, and problem-solving.
         </p>
@@ -100,9 +100,10 @@ const About: React.FC = () => {
           <motion.div
             key={index}
             initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
-            className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-colors duration-300"
+            className="premium-card p-4 rounded-lg"
           >
             <div className="flex items-center space-x-3">
               <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
@@ -127,9 +128,10 @@ const About: React.FC = () => {
           <motion.div
             key={index}
             initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ delay: 1 + index * 0.2, duration: 0.8 }}
-            className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-300 dark:border-gray-700 transition-colors duration-300"
+            className="premium-card p-6 rounded-xl"
           >
             <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mb-4">
               <value.icon className="w-6 h-6 text-white" />

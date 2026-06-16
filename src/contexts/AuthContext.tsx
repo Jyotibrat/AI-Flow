@@ -6,14 +6,15 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (email: string, password: string, fullName?: string) => Promise<any>;
-  signIn: (email: string, password: string) => Promise<any>;
-  signInWithGoogle: () => Promise<any>;
-  signOut: () => Promise<any>;
+  signUp: (email: string, password: string, fullName?: string) => ReturnType<typeof supabase.auth.signUp>;
+  signIn: (email: string, password: string) => ReturnType<typeof supabase.auth.signInWithPassword>;
+  signInWithGoogle: () => ReturnType<typeof supabase.auth.signInWithOAuth>;
+  signOut: () => ReturnType<typeof supabase.auth.signOut>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {

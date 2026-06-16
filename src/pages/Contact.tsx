@@ -107,7 +107,7 @@ const Contact: React.FC = () => {
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700"
+            className="premium-panel p-8 rounded-xl"
           >
             <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-900 dark:text-white">
               <Mail className="w-8 h-8 mr-3 text-blue-500" />
@@ -129,7 +129,7 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full pl-10 pr-4 py-3 bg-gray-100 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full pl-10 pr-4 py-3 bg-gray-100 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent premium-input"
                       placeholder="John Doe"
                     />
                   </div>
@@ -148,7 +148,7 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full pl-10 pr-4 py-3 bg-gray-100 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-100 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent premium-input"
                       placeholder="john@example.com"
                     />
                   </div>
@@ -166,7 +166,7 @@ const Contact: React.FC = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent premium-input"
                   placeholder="What's this about?"
                 />
               </div>
@@ -184,7 +184,7 @@ const Contact: React.FC = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full pl-10 pr-4 py-3 bg-gray-100 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    className="w-full pl-10 pr-4 py-3 bg-gray-100 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none premium-input"
                     placeholder="Tell us more about your inquiry..."
                   />
                 </div>
@@ -195,7 +195,7 @@ const Contact: React.FC = () => {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="w-full px-6 py-4 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 premium-button"
               >
                 {isSubmitting ? (
                   <>
@@ -240,7 +240,7 @@ const Contact: React.FC = () => {
             className="space-y-8"
           >
             {/* Admin Profile */}
-            <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700">
+            <div className="premium-card p-8 rounded-xl">
               <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Meet the Admin</h2>
               <div className="flex items-center space-x-4 mb-6">
                 <img
@@ -269,7 +269,7 @@ const Contact: React.FC = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className={`w-12 h-12 bg-gradient-to-r ${social.color} rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-300`}
+                    className={`w-12 h-12 bg-gradient-to-r ${social.color} rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
                     title={social.name}
                   >
                     <social.icon className="w-5 h-5 text-white" />
@@ -279,7 +279,7 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Quick Contact Info */}
-            <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700">
+            <div className="premium-card p-8 rounded-xl">
               <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Quick Contact</h3>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">

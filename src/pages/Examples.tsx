@@ -115,12 +115,13 @@ const Examples: React.FC = () => {
         <motion.div
           key={index}
           initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.18 }}
           transition={{ delay: 0.4 + index * 0.1, duration: 0.8 }}
-          className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700 hover:border-blue-500 transition-colors duration-300"
+          className="group premium-card p-8 rounded-xl"
         >
           <div className="flex items-center space-x-4 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/20 transition-transform duration-300 group-hover:scale-110">
               <example.icon className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -136,7 +137,7 @@ const Examples: React.FC = () => {
               <h4 className="text-lg font-medium mb-3 text-green-600 dark:text-green-400">
                 Input
               </h4>
-              <div className="bg-gray-200 dark:bg-gray-900/50 p-4 rounded-lg border border-gray-300 dark:border-gray-600">
+              <div className="bg-gray-200/80 dark:bg-gray-900/50 p-4 rounded-lg border border-gray-300 dark:border-gray-600 transition-all duration-300 group-hover:border-green-400/60">
                 <p className="text-gray-800 dark:text-gray-300 font-mono text-sm">
                   {example.input}
                 </p>
@@ -147,7 +148,7 @@ const Examples: React.FC = () => {
                 <h4 className="text-lg font-medium mb-3 text-blue-600 dark:text-blue-400">
                   Output
                 </h4>
-                <div className="bg-gray-200 dark:bg-gray-900/50 p-4 rounded-lg border border-gray-300 dark:border-gray-600">
+                <div className="bg-gray-200/80 dark:bg-gray-900/50 p-4 rounded-lg border border-gray-300 dark:border-gray-600 transition-all duration-300 group-hover:border-blue-400/60">
                   <img
                     src={example.output}
                     alt="Generated image"
@@ -160,7 +161,7 @@ const Examples: React.FC = () => {
                 <h4 className="text-lg font-medium mb-3 text-blue-600 dark:text-blue-400">
                   Output
                 </h4>
-                <div className="bg-gray-200 dark:bg-gray-900/50 p-4 rounded-lg border border-gray-300 dark:border-gray-600">
+                <div className="bg-gray-200/80 dark:bg-gray-900/50 p-4 rounded-lg border border-gray-300 dark:border-gray-600 transition-all duration-300 group-hover:border-blue-400/60">
                   <p className="text-gray-800 dark:text-gray-300 font-mono text-sm">
                     {example.output}
                   </p>
