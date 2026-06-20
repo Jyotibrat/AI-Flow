@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -274,6 +274,7 @@ const handleToolSelect = (toolId: string) => {
           <input
             type="text"
             placeholder="Search AI tools..."
+            aria-label="Search AI tools"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-14 pr-4 py-4 bg-gray-100 dark:bg-gray-800/70 backdrop-blur-md border border-gray-300 dark:border-gray-700 rounded-2xl text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
@@ -290,7 +291,16 @@ const handleToolSelect = (toolId: string) => {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.6 + index * 0.1, duration: 0.8 }}
                   onClick={() => handleToolSelect(tool.id)}   // ✅ use helper here
-                  className={`p-6 rounded-2xl cursor-pointer shadow-lg transition-all duration-300 transform hover:scale-105 ${
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={selectedTool === tool.id}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleToolSelect(tool.id);
+                    }
+                  }}
+                  className={`p-6 rounded-2xl cursor-pointer shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                     selectedTool === tool.id
                       ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-blue-500/50"
                       : "bg-gray-100 dark:bg-gray-800/70 backdrop-blur-md border border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500"
@@ -314,7 +324,7 @@ const handleToolSelect = (toolId: string) => {
                         className={`text-sm ${
                           selectedTool === tool.id
                             ? "text-gray-200"
-                            : "text-gray-600 dark:text-gray-400"
+                            : "text-gray-700 dark:text-gray-300"
                         }`}
                       >
                         {tool.description}
@@ -341,10 +351,11 @@ const handleToolSelect = (toolId: string) => {
 
                   <div className="space-y-6">
                     <div>
-                      <label className="block text-sm font-medium mb-3 text-gray-600 dark:text-gray-300">
+                      <label htmlFor="tool-input" className="block text-sm font-medium mb-3 text-gray-700 dark:text-gray-300">
                         Input
                       </label>
                       <textarea
+                        id="tool-input"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder={
@@ -357,28 +368,30 @@ const handleToolSelect = (toolId: string) => {
                     <button
                       onClick={handleSubmit}
                       disabled={loading}
-                      className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold text-white shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-semibold text-white shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {loading ? "Processing..." : "Generate Result"}
                     </button>
 
                     {output && (
                       <div>
-                        <label className="block text-sm font-medium mb-3 text-gray-600 dark:text-gray-300">
+                        <label htmlFor="tool-output" className="block text-sm font-medium mb-3 text-gray-700 dark:text-gray-300">
                           Output
                         </label>
-                        <FormattedOutput content={output} onClear={() => setOutput("")} />
+                        <div id="tool-output">
+                          <FormattedOutput content={output} onClear={() => setOutput("")} />
+                        </div>
                       </div>
                     )}
                     {imageUrl && (
                       <div>
-                        <label className="block text-sm font-medium mb-3 text-gray-600 dark:text-gray-300">
+                        <span className="block text-sm font-medium mb-3 text-gray-700 dark:text-gray-300">
                           Output
-                        </label>
+                        </span>
                         <div className="p-4 bg-gray-200 dark:bg-gray-900/60 border border-gray-300 dark:border-gray-600 rounded-xl">
                           <img
                             src={imageUrl}
-                            alt="Generated Image"
+                            alt={`Generated image for: ${input}`}
                             className="rounded-lg shadow-lg"
                           />
                         </div>
