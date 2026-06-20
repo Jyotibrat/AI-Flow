@@ -72,7 +72,7 @@ const Community: React.FC = () => {
       transition={{ delay: 0.2, duration: 0.8 }}
       className="text-center mb-16"
     >
-      <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+      <h1 className="text-5xl font-bold leading-normal mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
         Join Our Community
       </h1>
       <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
