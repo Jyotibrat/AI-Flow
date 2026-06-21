@@ -251,7 +251,7 @@ const Contact: React.FC = () => {
                 <div>
                   <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Bindupautra Jyotibrat</h3>
                   <p className="text-purple-600 dark:text-purple-400">Project Admin & Lead Developer</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">AI Flow</p>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm mt-1">AI Flow</p>
                 </div>
               </div>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
@@ -269,8 +269,9 @@ const Contact: React.FC = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className={`w-12 h-12 bg-gradient-to-r ${social.color} rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-300`}
+                    className={`w-12 h-12 bg-gradient-to-r ${social.color} rounded-full flex items-center justify-center hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
                     title={social.name}
+                    aria-label={`${social.name} (opens in a new tab)`}
                   >
                     <social.icon className="w-5 h-5 text-white" />
                   </motion.a>

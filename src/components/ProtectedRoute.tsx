@@ -35,7 +35,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
           Authentication Required
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 mb-8">
+        <p className="text-gray-700 dark:text-gray-300 mb-8">
           Please sign in to access our AI Tools and unlock the full potential of our platform.
         </p>
         <div className="space-y-4">

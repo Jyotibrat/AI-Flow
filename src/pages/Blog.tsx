@@ -76,10 +76,11 @@ const Blog: React.FC = () => {
       transition={{ delay: 0.2, duration: 0.8 }}
       className="text-center mb-16"
     >
-      <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-        AI Tools Hub Blog
+      
+      <h1 className="text-5xl font-bold leading-normal mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+          AI Tools Hub Blog
       </h1>
-      <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+      <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
         Insights, tutorials, and updates from the world of AI-powered development
       </p>
     </motion.div>
@@ -95,6 +96,7 @@ const Blog: React.FC = () => {
       <input
         type="text"
         placeholder="Search blog posts..."
+        aria-label="Search blog posts"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="w-full pl-12 pr-4 py-4 bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -114,7 +116,8 @@ const Blog: React.FC = () => {
             href={post.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block"
+            aria-label={`Read article: ${post.title} (opens in a new tab)`}
+            className="block focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl"
           >
             <motion.article
               initial={{ y: 50, opacity: 0 }}
@@ -172,10 +175,10 @@ const Blog: React.FC = () => {
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1, duration: 0.8 }}
-      className="mt-16 bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700"
+      className="mt-16 bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300"
     >
       <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">About Our Blog</h2>
-      <p className="text-gray-600 dark:text-gray-300 mb-4">
+      <p className="text-gray-700 dark:text-gray-300 mb-4">
         Our blog features the latest insights, tutorials, and updates about AI-powered development tools. 
         From beginner guides to advanced techniques, we cover everything you need to know about leveraging 
         AI in your development workflow.
