@@ -137,6 +137,7 @@ The project is under [**MIT LICENSE**](LICENSE)
 ## Links
 
 - [**Live Demo**](https://ai-flow-gssoc.vercel.app)
+[Auferet](https://auferet.com) - AI game master with persistent memory for your characters and uploaded lore; solo or multiplayer, with 5e and Pathfinder 2e modes.
 - [**Blog**](https://ai-flow-gssoc.vercel.app/blog)
 - [**Twitter**](https://x.com/B_Jyotibrat)
 - [**LinkedIn**](https://www.linkedin.com/in/bindupautra-jyotibrat)
