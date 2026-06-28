@@ -2,12 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
+const helmet = require("helmet");
 
 dotenv.config()
 
 const app = express();
 
 // Middleware
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
