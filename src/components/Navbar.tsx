@@ -47,6 +47,10 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
+        className="lg:hidden fixed top-3 left-3 z-50 p-2 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+        aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
         className="lg:hidden fixed top-3 left-3 z-50 p-2 bg-gray-800 text-white rounded-lg premium-button-secondary dark:bg-gray-800"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -55,6 +59,8 @@ const Navbar: React.FC = () => {
       {/* Theme Toggle Button */}
       <button
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+        className="fixed top-4 right-6 z-50 p-2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+        aria-label={theme === 'light' ? "Switch to dark theme" : "Switch to light theme"}
         className="fixed top-4 right-6 z-50 p-2 bg-gray-200 dark:bg-gray-800 text-black dark:text-white rounded-lg shadow-lg premium-button-secondary"
       >
         {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
@@ -77,6 +83,9 @@ const Navbar: React.FC = () => {
         <div className={`flex w-full ${isExpanded ? 'justify-end pr-4' : 'justify-center'}`}>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
+            className="pt-6 p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+            aria-label={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
+            aria-expanded={isExpanded}
             className="pt-6 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:text-blue-500"
           >
             {isExpanded ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -89,11 +98,12 @@ const Navbar: React.FC = () => {
         <NavLink
           key={item.path}
           to={item.path}
+          aria-label={item.label}
           className={({ isActive }) =>
-            `group flex ${isExpanded ? 'items-center gap-4 w-full p-2' : 'items-center justify-center w-12 h-12'} rounded-xl transition-all duration-300 ${
+            `group flex ${isExpanded ? 'items-center gap-4 w-full p-2' : 'items-center justify-center w-12 h-12'} rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               isActive
                 ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25'
-                : 'text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/10'
+                : 'text-gray-800 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-800 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/10'
             }`
           }
         >

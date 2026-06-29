@@ -70,7 +70,7 @@ const Contribute: React.FC = () => {
       <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
         Contribute to AI Tools Hub
       </h1>
-      <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+      <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
         Join our community of developers and help build the future of AI tools
       </p>
     </motion.div>
@@ -107,7 +107,8 @@ const Contribute: React.FC = () => {
               href="https://github.com/Jyotibrat/AI-Flow/issues"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center px-6 py-3 rounded-lg premium-button"
+              aria-label="View Issues on GitHub (opens in a new tab)"
+              className="flex items-center px-6 py-3 rounded-lg premium-button focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               <Star className="w-5 h-5 mr-2" />
               View Issues
@@ -137,7 +138,7 @@ const Contribute: React.FC = () => {
             className="premium-card p-6 rounded-xl"
           >
             <h3 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">{tech.name}</h3>
-            <p className="text-gray-700 dark:text-gray-400">{tech.description}</p>
+            <p className="text-gray-700 dark:text-gray-300">{tech.description}</p>
           </motion.div>
         ))}
       </div>
@@ -208,6 +209,7 @@ const Contribute: React.FC = () => {
               rel="noopener noreferrer" 
               className="text-gray-600 dark:text-gray-400 hover:text-blue-500 premium-link"
               title="LinkedIn"
+              aria-label={`LinkedIn profile of ${featuredContributor.name} (opens in a new tab)`}
             >
               <Linkedin className="w-6 h-6" />
             </a>
@@ -215,8 +217,9 @@ const Contribute: React.FC = () => {
               href={featuredContributor.github} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white premium-link"
+              className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
               title="GitHub"
+              aria-label={`GitHub profile of ${featuredContributor.name} (opens in a new tab)`}
             >
               <Github className="w-6 h-6" />
             </a>
@@ -226,6 +229,7 @@ const Contribute: React.FC = () => {
               rel="noopener noreferrer" 
               className="text-gray-600 dark:text-gray-400 hover:text-blue-400 premium-link"
               title="Twitter"
+              aria-label={`Twitter profile of ${featuredContributor.name} (opens in a new tab)`}
             >
               <Twitter className="w-6 h-6" />
             </a>
