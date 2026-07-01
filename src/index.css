@@ -1,3 +1,110 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    text-rendering: geometricPrecision;
+  }
+
+  ::selection {
+    @apply bg-blue-500/30 text-gray-950 dark:text-white;
+  }
+}
+
+@layer components {
+  .premium-surface {
+    @apply bg-white/90 dark:bg-gray-800/60 backdrop-blur-xl border border-gray-200/80 dark:border-gray-700/70 shadow-[0_18px_60px_rgba(15,23,42,0.08)] dark:shadow-[0_22px_70px_rgba(0,0,0,0.24)];
+  }
+
+  .premium-card {
+    @apply bg-white/90 dark:bg-gray-800/60 backdrop-blur-xl border border-gray-200/80 dark:border-gray-700/70 shadow-[0_18px_60px_rgba(15,23,42,0.08)] dark:shadow-[0_22px_70px_rgba(0,0,0,0.24)] relative overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.015] hover:border-blue-400/80 dark:hover:border-blue-400/70 hover:shadow-[0_22px_70px_rgba(37,99,235,0.16)] dark:hover:shadow-[0_24px_80px_rgba(59,130,246,0.18)];
+    will-change: transform, box-shadow;
+  }
+
+  .premium-card::before {
+    content: "";
+    @apply pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .premium-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .premium-panel {
+    @apply bg-white/90 dark:bg-gray-800/60 backdrop-blur-xl border border-gray-200/80 dark:border-gray-700/70 shadow-[0_18px_60px_rgba(15,23,42,0.08)] dark:shadow-[0_22px_70px_rgba(0,0,0,0.24)] transition-all duration-300 ease-out hover:border-purple-400/60 dark:hover:border-purple-400/60 hover:shadow-[0_20px_65px_rgba(124,58,237,0.12)] dark:hover:shadow-[0_22px_75px_rgba(124,58,237,0.16)];
+  }
+
+  .premium-button {
+    @apply relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg shadow-blue-600/20 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(79,70,229,0.34)] hover:saturate-150 active:translate-y-0 active:scale-[0.98] disabled:hover:translate-y-0 disabled:hover:shadow-lg;
+  }
+
+  .premium-button::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out;
+  }
+
+  .premium-button:hover::after {
+    @apply translate-x-full;
+  }
+
+  .premium-button-secondary {
+    @apply bg-gray-100/90 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-blue-400/70 hover:bg-white dark:hover:bg-gray-700/90 hover:shadow-[0_14px_35px_rgba(15,23,42,0.12)] dark:hover:shadow-[0_14px_35px_rgba(0,0,0,0.28)] active:translate-y-0;
+  }
+
+  .premium-link {
+    @apply transition-all duration-300 ease-out hover:-translate-y-0.5 hover:text-blue-500 dark:hover:text-blue-300;
+  }
+
+  .premium-input {
+    @apply transition-all duration-300 ease-out focus:scale-[1.005] focus:shadow-[0_0_0_4px_rgba(59,130,246,0.12)] dark:focus:shadow-[0_0_0_4px_rgba(96,165,250,0.14)];
+  }
+
+  .section-reveal {
+    animation: section-reveal 0.75s ease-out both;
+  }
+
+  .float-soft {
+    animation: float-soft 7s ease-in-out infinite;
+  }
+}
+
+@keyframes section-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.015);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

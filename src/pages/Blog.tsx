@@ -13,6 +13,17 @@ interface BlogPost {
   excerpt: string;
 }
 
+interface BloggerPost {
+  id: string;
+  title: string;
+  content: string;
+  published: string;
+  author: {
+    displayName: string;
+  };
+  url: string;
+}
+
 const Blog: React.FC = () => {
   const API_KEY = import.meta.env.VITE_BLOGGER_API_KEY; // Replace with your actual API key
   const BLOG_ID = import.meta.env.VITE_BLOG_ID; // Replace with your actual Blog ID
@@ -27,7 +38,7 @@ const Blog: React.FC = () => {
         const response = await axios.get(
           `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}&fetchBodies=true`
         );
-        const fetchedPosts: BlogPost[] = response.data.items.map((item: any) => ({
+        const fetchedPosts: BlogPost[] = ((response.data.items || []) as BloggerPost[]).map((item) => ({
           id: item.id,
           title: item.title,
           content: item.content,
@@ -45,7 +56,7 @@ const Blog: React.FC = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [API_KEY, BLOG_ID]);
 
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -99,7 +110,7 @@ const Blog: React.FC = () => {
         aria-label="Search blog posts"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full pl-12 pr-4 py-4 bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="w-full pl-12 pr-4 py-4 bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-300 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent premium-input"
       />
     </motion.div>
 
@@ -121,12 +132,10 @@ const Blog: React.FC = () => {
           >
             <motion.article
               initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.25 }}
               transition={{ delay: 0.6 + index * 0.1, duration: 0.8 }}
-              className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl 
-                        border border-gray-300 dark:border-gray-700 
-                        hover:border-blue-500 dark:hover:border-blue-500 
-                        transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              className="group premium-card p-6 rounded-xl cursor-pointer h-full"
             >
               <h2 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white line-clamp-2">
                 {post.title}
@@ -146,7 +155,7 @@ const Blog: React.FC = () => {
               <div className="inline-flex items-center space-x-2 text-blue-500 dark:text-blue-400 
                                transition-colors duration-300">
                 <span>Read More</span>
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </div>
             </motion.article>
           </a>
@@ -176,6 +185,7 @@ const Blog: React.FC = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1, duration: 0.8 }}
       className="mt-16 bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300"
+      className="mt-16 premium-panel p-8 rounded-xl"
     >
       <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">About Our Blog</h2>
       <p className="text-gray-700 dark:text-gray-300 mb-4">

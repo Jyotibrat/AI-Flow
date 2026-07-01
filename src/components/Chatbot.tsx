@@ -51,7 +51,7 @@ const Chatbot: React.FC = () => {
         botText = `Gemini API Error: ${data.error.message}`;
       }
       setMessages((prev) => [...prev, { type: "bot", text: botText }]);
-    } catch (error) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         { type: "bot", text: "Error connecting to Gemini API." },
