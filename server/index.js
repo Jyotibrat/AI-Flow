@@ -22,10 +22,64 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateContactForm({ name, email, subject, message }) {
+  const trimmedName = name?.trim();
+  const trimmedEmail = email?.trim().toLowerCase();
+  const trimmedSubject = subject?.trim();
+  const trimmedMessage = message?.trim();
+
+  if (!trimmedName || !trimmedEmail || !trimmedSubject || !trimmedMessage) {
+    return {
+      valid: false,
+      message: "All fields are required (name, email, subject, message)",
+    };
+  }
+
+  if (trimmedName.length < 2 || trimmedName.length > 50) {
+    return {
+      valid: false,
+      message: "Name must be between 2 and 50 characters.",
+    };
+  }
+
+  if (!emailRegex.test(trimmedEmail)) {
+    return {
+      valid: false,
+      message: "Please provide a valid email address.",
+    };
+  }
+
+  if (trimmedSubject.length < 5 || trimmedSubject.length > 100) {
+    return {
+      valid: false,
+      message: "Subject must be between 5 and 100 characters.",
+    };
+  }
+
+  if (trimmedMessage.length < 10 || trimmedMessage.length > 1000) {
+    return {
+      valid: false,
+      message: "Message must be between 10 and 1000 characters.",
+    };
+  }
+
+  return {
+    valid: true,
+    data: {
+      name: trimmedName,
+      email: trimmedEmail,
+      subject: trimmedSubject,
+      message: trimmedMessage,
+    },
+  };
+}
+
 // Handle all HTTP methods for /api/contact
 app.all('/api/contact', async (req, res) => {
   const method = req.method;
-  
+
   try {
     if (method === 'GET') {
       // Handle GET requests - return endpoint info
@@ -36,19 +90,20 @@ app.all('/api/contact', async (req, res) => {
         info: 'Use POST method with name, email, subject, and message to send contact form'
       });
     }
-    
+
     else if (method === 'POST') {
       // Handle POST requests - send email
-      const { name, email, subject, message } = req.body;
+      const validation = validateContactForm(req.body);
 
-      // Validate input
-      if (!name || !email || !subject || !message) {
-        return res.status(400).json({ 
-          success: false, 
-          message: 'All fields are required (name, email, subject, message)',
-          method: 'POST'
+      if (!validation.valid) {
+        return res.status(400).json({
+          success: false,
+          message: validation.message,
+          method: "POST",
         });
       }
+
+      const { name, email, subject, message } = validation.data;
 
       // Email options
       const mailOptions = {
@@ -69,13 +124,13 @@ app.all('/api/contact', async (req, res) => {
       // Send email
       await transporter.sendMail(mailOptions);
 
-      res.status(200).json({ 
-        success: true, 
+      res.status(200).json({
+        success: true,
         message: 'Message sent successfully!',
         method: 'POST'
       });
     }
-    
+
     else if (method === 'PUT') {
       // Handle PUT requests
       res.status(200).json({
@@ -85,7 +140,7 @@ app.all('/api/contact', async (req, res) => {
         info: 'PUT method is supported but no specific functionality implemented'
       });
     }
-    
+
     else if (method === 'DELETE') {
       // Handle DELETE requests
       res.status(200).json({
@@ -95,7 +150,7 @@ app.all('/api/contact', async (req, res) => {
         info: 'DELETE method is supported but no specific functionality implemented'
       });
     }
-    
+
     else if (method === 'PATCH') {
       // Handle PATCH requests
       res.status(200).json({
@@ -105,7 +160,7 @@ app.all('/api/contact', async (req, res) => {
         info: 'PATCH method is supported but no specific functionality implemented'
       });
     }
-    
+
     else {
       // Handle any other HTTP methods
       res.status(200).json({
@@ -115,11 +170,11 @@ app.all('/api/contact', async (req, res) => {
         info: `${method} method is supported but no specific functionality implemented`
       });
     }
-    
+
   } catch (error) {
     console.error(`Error handling ${method} request:`, error);
-    res.status(500).json({ 
-      success: false, 
+    res.status(500).json({
+      success: false,
       message: `Failed to process ${method} request. Please try again later.`,
       method: method
     });
