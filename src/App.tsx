@@ -1,24 +1,29 @@
-import React, { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
-import { AuthProvider } from './contexts/AuthContext';
-import LoadingScreen from './components/LoadingScreen';
-import ProtectedRoute from './components/ProtectedRoute';
-import Layout from './components/Layout';
-import Chatbot from './components/Chatbot';
-import { initGA, trackPageView } from './utils/analytics';
-import { Toaster } from 'react-hot-toast';
-import ScrollToTop from './components/ScrollToTop';
+import React, { useEffect, lazy, Suspense } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { AuthProvider } from "./contexts/AuthContext";
+import LoadingScreen from "./components/LoadingScreen";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Layout from "./components/Layout";
+import Chatbot from "./components/Chatbot";
+import { initGA, trackPageView } from "./utils/analytics";
+import { Toaster } from "react-hot-toast";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Lazy load page components
-const Home = lazy(() => import('./pages/Home'));
-const About = lazy(() => import('./pages/About'));
-const Examples = lazy(() => import('./pages/Examples'));
-const Contribute = lazy(() => import('./pages/Contribute'));
-const Community = lazy(() => import('./pages/Community'));
-const Contact = lazy(() => import('./pages/Contact'));
-const Blog = lazy(() => import('./pages/Blog'));
-const AITools = lazy(() => import('./pages/AITools'));
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Examples = lazy(() => import("./pages/Examples"));
+const Contribute = lazy(() => import("./pages/Contribute"));
+const Community = lazy(() => import("./pages/Community"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Blog = lazy(() => import("./pages/Blog"));
+const AITools = lazy(() => import("./pages/AITools"));
 
 const AnalyticsTracker: React.FC = () => {
   const location = useLocation();
@@ -50,11 +55,14 @@ function App() {
                   <Route path="/community" element={<Community />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/blog" element={<Blog />} />
-                  <Route path="/ai-tools" element={
-                    <ProtectedRoute>
-                      <AITools />
-                    </ProtectedRoute>
-                  } />
+                  <Route
+                    path="/ai-tools"
+                    element={
+                      <ProtectedRoute>
+                        <AITools />
+                      </ProtectedRoute>
+                    }
+                  />
                 </Routes>
               </Suspense>
             </Layout>

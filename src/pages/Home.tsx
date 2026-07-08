@@ -37,7 +37,7 @@ const Home: React.FC = () => {
     }
   };
 
-   return (
+  return (
     <>
       <motion.div
         initial={{ opacity: 0 }}
@@ -137,7 +137,9 @@ const Home: React.FC = () => {
                   <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {feature.description}
+                  </p>
                 </motion.div>
               ))}
             </div>

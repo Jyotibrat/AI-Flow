@@ -78,7 +78,6 @@ npm fund
 
 ### Environment Variables
 
-
 Create a `.env` file in the root and set:
 
 ```
@@ -99,14 +98,14 @@ EMAIL_PASS=your_gmail_app_password
 PORT=5000
 ```
 
-```md
+````md
 ## 🛠️ Environment Variables Setup
 
 If you find difficulty in setting up environment variables, follow these steps(You can follow the steps provided in .env.example to set them up):
 
 1. Copy the `.env.example` files to `.env` files:
 
-```bash
+````bash
 cp .env.example .env
 cp server/.env.example server/.env
 
@@ -117,7 +116,8 @@ cp server/.env.example server/.env
 
 ```sh
 npm run dev
-```
+````
+````
 
 #### Backend
 
@@ -144,8 +144,7 @@ The project is under [**MIT LICENSE**](LICENSE)
 
 ---
 
-*Empowering everyone with accessible AI tools.*
-
+_Empowering everyone with accessible AI tools._
 
 <!--DEMO VID!-->
 <!--https://github.com/user-attachments/assets/24e4748d-0ba9-4e3c-8865-7b46f9a2d2d3-->

@@ -1,78 +1,92 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Twitter, Send, User, MessageSquare, Coffee } from 'lucide-react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Linkedin,
+  Github,
+  Twitter,
+  Send,
+  User,
+  MessageSquare,
+  Coffee,
+} from "lucide-react";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   // Get backend URL from environment variables (Vite uses import.meta.env)
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
   const adminSocials = [
     {
-      name: 'Buy Me a Coffee',
+      name: "Buy Me a Coffee",
       icon: Coffee,
-      url: 'https://coff.ee/bjyotibrat',
-      color: 'from-yellow-500 to-orange-500'
+      url: "https://coff.ee/bjyotibrat",
+      color: "from-yellow-500 to-orange-500",
     },
     {
-      name: 'LinkedIn',
+      name: "LinkedIn",
       icon: Linkedin,
-      url: 'https://www.linkedin.com/in/bindupautra-jyotibrat',
-      color: 'from-blue-600 to-blue-800'
+      url: "https://www.linkedin.com/in/bindupautra-jyotibrat",
+      color: "from-blue-600 to-blue-800",
     },
     {
-      name: 'GitHub',
+      name: "GitHub",
       icon: Github,
-      url: 'https://github.com/Jyotibrat',
-      color: 'from-gray-600 to-gray-800'
+      url: "https://github.com/Jyotibrat",
+      color: "from-gray-600 to-gray-800",
     },
     {
-      name: 'Twitter',
+      name: "Twitter",
       icon: Twitter,
-      url: 'https://x.com/B_Jyotibrat',
-      color: 'from-blue-400 to-blue-600'
-    }
+      url: "https://x.com/B_Jyotibrat",
+      color: "from-blue-400 to-blue-600",
+    },
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitStatus("idle");
 
     try {
       const response = await fetch(`${API_BASE_URL}/api/contact`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        setSubmitStatus('error');
+        setSubmitStatus("error");
       }
     } catch (error) {
-      console.error('Error sending email:', error);
-      setSubmitStatus('error');
+      console.error("Error sending email:", error);
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -97,7 +111,8 @@ const Contact: React.FC = () => {
             Contact Us
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Have questions, suggestions, or need support? We'd love to hear from you
+            Have questions, suggestions, or need support? We'd love to hear from
+            you
           </p>
         </motion.div>
 
@@ -117,7 +132,10 @@ const Contact: React.FC = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-800 dark:text-gray-300">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium mb-2 text-gray-800 dark:text-gray-300"
+                  >
                     Full Name
                   </label>
                   <div className="relative">
@@ -136,7 +154,10 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-800 dark:text-gray-300">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium mb-2 text-gray-800 dark:text-gray-300"
+                  >
                     Email Address
                   </label>
                   <div className="relative">
@@ -156,7 +177,10 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2 text-gray-800 dark:text-gray-300">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium mb-2 text-gray-800 dark:text-gray-300"
+                >
                   Subject
                 </label>
                 <input
@@ -172,7 +196,10 @@ const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-800 dark:text-gray-300">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2 text-gray-800 dark:text-gray-300"
+                >
                   Message
                 </label>
                 <div className="relative">
@@ -210,7 +237,7 @@ const Contact: React.FC = () => {
                 )}
               </motion.button>
 
-              {submitStatus === 'success' && (
+              {submitStatus === "success" && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -220,7 +247,7 @@ const Contact: React.FC = () => {
                 </motion.div>
               )}
 
-              {submitStatus === 'error' && (
+              {submitStatus === "error" && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -241,7 +268,9 @@ const Contact: React.FC = () => {
           >
             {/* Admin Profile */}
             <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700">
-              <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Meet the Admin</h2>
+              <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+                Meet the Admin
+              </h2>
               <div className="flex items-center space-x-4 mb-6">
                 <img
                   src="/project_admin_pic.jpg"
@@ -249,17 +278,24 @@ const Contact: React.FC = () => {
                   className="w-20 h-20 rounded-full object-cover"
                 />
                 <div>
-                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Bindupautra Jyotibrat</h3>
-                  <p className="text-purple-600 dark:text-purple-400">Project Admin & Lead Developer</p>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm mt-1">AI Flow</p>
+                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
+                    Bindupautra Jyotibrat
+                  </h3>
+                  <p className="text-purple-600 dark:text-purple-400">
+                    Project Admin & Lead Developer
+                  </p>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm mt-1">
+                    AI Flow
+                  </p>
                 </div>
               </div>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
-                Passionate about AI and open-source development. Leading the AI Tools Hub project 
-                to make powerful AI tools accessible to everyone. Always open to feedback and 
-                collaboration opportunities.
+                Passionate about AI and open-source development. Leading the AI
+                Tools Hub project to make powerful AI tools accessible to
+                everyone. Always open to feedback and collaboration
+                opportunities.
               </p>
-              
+
               <div className="flex space-x-4">
                 {adminSocials.map((social, index) => (
                   <motion.a
@@ -281,19 +317,24 @@ const Contact: React.FC = () => {
 
             {/* Quick Contact Info */}
             <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-300 dark:border-gray-700">
-              <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Quick Contact</h3>
+              <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
+                Quick Contact
+              </h3>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-blue-500" />
-                  <span className="text-gray-700 dark:text-gray-300">bjyotibrat@gmail.com</span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    bjyotibrat@gmail.com
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <MessageSquare className="w-5 h-5 text-purple-500" />
-                  <span className="text-gray-700 dark:text-gray-300">Response within 24 hours</span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    Response within 24 hours
+                  </span>
                 </div>
               </div>
             </div>
-
           </motion.div>
         </div>
       </div>
