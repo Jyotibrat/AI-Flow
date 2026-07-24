@@ -37,7 +37,7 @@ Clone the repository and install dependencies:
 git clone https://github.com/Jyotibrat/AI-Flow.git
 cd AI-Flow
 npm install
-````
+```
 
 Run the development server:
 
@@ -57,27 +57,27 @@ npm run dev
 
 Branch naming convention:
 
-* `feature/<name>` for new features
-* `fix/<name>` for bug fixes
-* `docs/<name>` for documentation changes
+- `feature/<name>` for new features
+- `fix/<name>` for bug fixes
+- `docs/<name>` for documentation changes
 
 ---
 
 ## Coding Guidelines
 
-* Write *clear*, *maintainable*, and *modular* code
-* Follow *existing project structure* and *patterns*
-* Use *meaningful variable* and *function names*
-* Avoid *unnecessary dependencies*
-* Keep changes *focused* and *minimal*
+- Write _clear_, _maintainable_, and _modular_ code
+- Follow _existing project structure_ and _patterns_
+- Use _meaningful variable_ and _function names_
+- Avoid _unnecessary dependencies_
+- Keep changes _focused_ and _minimal_
 
 ---
 
 ## Testing
 
-* Ensure the application runs without errors
-* Verify that new features do not break existing functionality
-* Test UI changes across different screen sizes where applicable
+- Ensure the application runs without errors
+- Verify that new features do not break existing functionality
+- Test UI changes across different screen sizes where applicable
 
 ---
 
@@ -85,10 +85,10 @@ Branch naming convention:
 
 Before creating a new issue:
 
-* Check if a similar issue already exists
-* Provide a clear and descriptive title
-* Include steps to reproduce (for bugs)
-* Add relevant screenshots or logs if necessary
+- Check if a similar issue already exists
+- Provide a clear and descriptive title
+- Include steps to reproduce (for bugs)
+- Add relevant screenshots or logs if necessary
 
 For larger changes or new features, open an issue first to discuss the approach.
 
@@ -98,24 +98,24 @@ For larger changes or new features, open an issue first to discuss the approach.
 
 When submitting a pull request:
 
-* Provide a clear description of the changes
-* Reference related issues if applicable
-* Keep pull requests small and focused
-* Ensure your branch is up to date with `main`
+- Provide a clear description of the changes
+- Reference related issues if applicable
+- Keep pull requests small and focused
+- Ensure your branch is up to date with `main`
 
 Review process:
 
-* Maintainers will review your changes
-* Feedback may be provided for improvements
-* Changes may be requested before merging
+- Maintainers will review your changes
+- Feedback may be provided for improvements
+- Changes may be requested before merging
 
 ---
 
 ## Additional Notes
 
-* Keep all discussions public within issues or pull requests so others can benefit
-* Avoid direct private communication regarding project changes unless necessary
-* Respect all contributors and maintain a collaborative environment
+- Keep all discussions public within issues or pull requests so others can benefit
+- Avoid direct private communication regarding project changes unless necessary
+- Respect all contributors and maintain a collaborative environment
 
 ---
 
@@ -133,19 +133,19 @@ This project enforces [Conventional Commits](https://www.conventionalcommits.org
 
 ### Types
 
-| Type | When to use |
-|------|-------------|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `docs` | Documentation only |
-| `style` | Formatting, whitespace (no logic change) |
-| `refactor` | Code restructure, no feature/fix |
-| `perf` | Performance improvement |
-| `test` | Adding or fixing tests |
-| `build` | Build system or dependency changes |
-| `ci` | CI/CD configuration |
-| `chore` | Maintenance tasks |
-| `revert` | Revert a previous commit |
+| Type       | When to use                              |
+| ---------- | ---------------------------------------- |
+| `feat`     | New feature                              |
+| `fix`      | Bug fix                                  |
+| `docs`     | Documentation only                       |
+| `style`    | Formatting, whitespace (no logic change) |
+| `refactor` | Code restructure, no feature/fix         |
+| `perf`     | Performance improvement                  |
+| `test`     | Adding or fixing tests                   |
+| `build`    | Build system or dependency changes       |
+| `ci`       | CI/CD configuration                      |
+| `chore`    | Maintenance tasks                        |
+| `revert`   | Revert a previous commit                 |
 
 ### Good commits
 

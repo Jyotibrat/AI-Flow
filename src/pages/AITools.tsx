@@ -19,12 +19,12 @@ const AITools: React.FC = () => {
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
-const handleToolSelect = (toolId: string) => {
-  setSelectedTool(toolId);
-  setInput("");      // Clear input
-  setOutput("");     // Clear output
-  setImageUrl("");   // Clear image
-};
+  const handleToolSelect = (toolId: string) => {
+    setSelectedTool(toolId);
+    setInput(""); // Clear input
+    setOutput(""); // Clear output
+    setImageUrl(""); // Clear image
+  };
   const tools = [
     {
       id: "prompt-enhancer",
@@ -104,17 +104,17 @@ const handleToolSelect = (toolId: string) => {
   const filteredTools = tools.filter(
     (tool) =>
       tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      tool.description.toLowerCase().includes(searchTerm.toLowerCase())
+      tool.description.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const GEMINI_API_KEY = import.meta.env.VITE_APP_GEMINI_API_KEY;
-  const GEMINI_MODEL = import.meta.env.VITE_APP_GEMINI_MODEL || "gemini-3.5-flash";
-
+  const GEMINI_MODEL =
+    import.meta.env.VITE_APP_GEMINI_MODEL || "gemini-3.5-flash";
 
   const processWithAI = async (
     inputText: string,
     systemPrompt: string,
-    isImage: Boolean
+    isImage: Boolean,
   ) => {
     if (!GEMINI_API_KEY) {
       setOutput("API key not configured. Please contact the administrator.");
@@ -122,7 +122,6 @@ const handleToolSelect = (toolId: string) => {
       return;
     }
     console.log(isImage);
-
 
     setLoading(true);
     if (!isImage) {
@@ -142,7 +141,7 @@ const handleToolSelect = (toolId: string) => {
                 },
               ],
             }),
-          }
+          },
         );
 
         const data = await response.json();
@@ -184,14 +183,14 @@ const handleToolSelect = (toolId: string) => {
                 responseModalities: ["TEXT", "IMAGE"],
               },
             }),
-          }
+          },
         );
 
         const data = await response.json();
         console.log("Gemini API raw image response:", data);
-    
+
         const imagePart = data?.candidates?.[0]?.content?.parts?.find(
-          (part: any) => part.inlineData?.data
+          (part: any) => part.inlineData?.data,
         );
 
         if (imagePart) {
@@ -241,7 +240,7 @@ const handleToolSelect = (toolId: string) => {
       }
     }
   };
- return (
+  return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -290,7 +289,7 @@ const handleToolSelect = (toolId: string) => {
                   initial={{ x: -50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.6 + index * 0.1, duration: 0.8 }}
-                  onClick={() => handleToolSelect(tool.id)}   // ✅ use helper here
+                  onClick={() => handleToolSelect(tool.id)} // ✅ use helper here
                   role="button"
                   tabIndex={0}
                   aria-pressed={selectedTool === tool.id}
@@ -317,7 +316,9 @@ const handleToolSelect = (toolId: string) => {
                       <tool.icon className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className={`text-lg font-semibold ${selectedTool === tool.id ? "text-white" : "text-gray-900 dark:text-white"}`}>
+                      <h3
+                        className={`text-lg font-semibold ${selectedTool === tool.id ? "text-white" : "text-gray-900 dark:text-white"}`}
+                      >
                         {tool.name}
                       </h3>
                       <p
@@ -351,7 +352,10 @@ const handleToolSelect = (toolId: string) => {
 
                   <div className="space-y-6">
                     <div>
-                      <label htmlFor="tool-input" className="block text-sm font-medium mb-3 text-gray-700 dark:text-gray-300">
+                      <label
+                        htmlFor="tool-input"
+                        className="block text-sm font-medium mb-3 text-gray-700 dark:text-gray-300"
+                      >
                         Input
                       </label>
                       <textarea
@@ -375,11 +379,17 @@ const handleToolSelect = (toolId: string) => {
 
                     {output && (
                       <div>
-                        <label htmlFor="tool-output" className="block text-sm font-medium mb-3 text-gray-700 dark:text-gray-300">
+                        <label
+                          htmlFor="tool-output"
+                          className="block text-sm font-medium mb-3 text-gray-700 dark:text-gray-300"
+                        >
                           Output
                         </label>
                         <div id="tool-output">
-                          <FormattedOutput content={output} onClear={() => setOutput("")} />
+                          <FormattedOutput
+                            content={output}
+                            onClear={() => setOutput("")}
+                          />
                         </div>
                       </div>
                     )}
